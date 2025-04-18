@@ -2,7 +2,14 @@ import telebot
 
 # Token del bot
 TOKEN = '7665289053:AAG0aUs8L-8PJfJs3kmw3Uf-o8u8CB9bgMg'
+from flask import Flask, request
+import os
+
+TOKEN = os.environ.get("BOT_TOKEN")
+WEBHOOK_URL = os.environ.get("WEBHOOK_URL")
+
 bot = telebot.TeleBot(TOKEN)
+app = Flask(__name__)
 
 # Diccionario de categorías de ingredientes
 ingredientes_categoria = {
@@ -413,4 +420,17 @@ def responder_mensaje(message):
     bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
     
 # ¡Arrancar el bot!
-bot.polling()
+@app.route(f"/{TOKEN}", methods=["POST"])
+def webhook():
+    update = telebot.types.Update.de_json(request.data.decode("utf-8"))
+    bot.process_new_updates([update])
+    return "", 200
+
+@app.route("/", methods=["GET"])
+def index():
+    return "Bot activo", 200
+
+@app.before_first_request
+def setup_webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url=f"{WEBHOOK_URL}/{TOKEN}")
