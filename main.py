@@ -1,13 +1,7 @@
-import os
 import telebot
 
-# Obtener el token desde la variable de entorno
-TOKEN = os.getenv('TELEGRAM_TOKEN')
-
-if TOKEN is None:
-    raise ValueError("El token de Telegram no se ha configurado correctamente.")
-
-# Inicializar el bot de Telegram con el token
+# Token del bot
+TOKEN = '7665289053:AAG0aUs8L-8PJfJs3kmw3Uf-o8u8CB9bgMg'
 bot = telebot.TeleBot(TOKEN)
 
 # Diccionario de categorías de ingredientes
