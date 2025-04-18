@@ -278,16 +278,30 @@ def bienvenida(message):
 # 📚 Comandos para mostrar secciones del recetario (YA FUNCIONALES)
 @bot.message_handler(commands=['recetario'])
 def mostrar_recetario_completo(message):
-    texto = (
-        "*📖 Recetario completo*\n\n"
-        "🍢 *Aperitivos*\n"
-        "• Aperitivos de marisco\n\n"
-        "🍽️ *Entrantes*\n"
-        "• Bacalao al horno crujiente\n\n"
-        "🍰 *Postres*\n"
-        "• Banana Split"
-    )
-    bot.send_message(message.chat.id, texto, parse_mode="Markdown")
+    texto = "*📖 Recetario completo*\n\n"
+
+    # Añadir aperitivos
+    texto += "🍢 *Aperitivos*\n"
+    for receta in recetas['Aperitivos'].keys():
+        texto += f"• {receta}\n"
+
+    # Añadir entrantes
+    texto += "\n🍽️ *Entrantes*\n"
+    for receta in recetas['Entrantes'].keys():
+        texto += f"• {receta}\n"
+
+    # Añadir postres
+    texto += "\n🍰 *Postres*\n"
+    for receta in recetas['Postres'].keys():
+        texto += f"• {receta}\n"
+
+    # Enviar el mensaje en partes si es muy largo
+    if len(texto) > 4096:
+        partes = [texto[i:i+4096] for i in range(0, len(texto), 4096)]
+        for parte in partes:
+            bot.send_message(message.chat.id, parte, parse_mode="Markdown")
+    else:
+        bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
 @bot.message_handler(commands=['aperitivos'])
 def mostrar_aperitivos(message):
