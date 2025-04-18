@@ -19,15 +19,15 @@ ingredientes_categoria = {
         "Arándano", "Arandano", "Limón", "Limon"
     ],
     "grano": [
-        "Trigo", "Maíz", "Maiz", "Arroz", "Canola", "Caña de azúcar", "Soja"
+        "Trigo", "Maíz", "Maiz", "Arroz", "Canola", "Caña de azúcar", "Soja", "Café", "Cacao"
     ],
     "marisco": [
         "Almeja", "Ostra", "Vieira"
-    ]
-    
     ],
     "pescado": [
-        "Rape", "Lubina", "Besugo", "Carpa", Pez gato, Bacalao, Pez globo, Arenque, Caballa real, Lanzón, Perca, Pike, Trucha arcoíris, Salmón, Lenguado, Pez espada, Tilapia, Atún, Lucioperca, Esturión"
+        "Rape", "Lubina", "Besugo", "Carpa", "Pez gato", "Bacalao", "Pez globo", 
+        "Arenque", "Caballa real", "Lanzón", "Perca", "Pike", "Trucha arcoiris", 
+        "Salmón", "Lenguado", "Pez espada", "Tilapia", "Atún", "Lucioperca", "Esturión", "Pez", "Pescado"
     ]
 }
 
@@ -52,8 +52,8 @@ recetas = {
     "Bolas de sésamo": ["trigo", "jengibre", "arroz", "soja", "algas"],
     "Burbujas de ensueño": ["fruto de Dreamlight", "trigo", "caña de azúcar", "slush"],
     "Buñuelos": ["trigo", "queso", "leche", "huevo"],
-    "Café con leche": ["grano de café", "leche"],
-    "Café": ["grano de café"],
+    "Café con leche": ["café", "leche"],
+    "Café": ["café"],
     "Crema de puerros y patata": ["puerro", "patata", "leche", "cebolla", "ajo"],
     "Crema de verduras": ["verdura", "verdura"],
     "Ensalada verde": ["verdura", "lechuga"],
@@ -70,7 +70,7 @@ recetas = {
     "Hojaldres de patata": ["patata", "huevo", "queso"],
     "Hojaldres de pimiento": ["pimiento", "huevo", "queso"],
     "Huevos duros": ["huevo"],
-    "Moka": ["grano de café", "leche", "grano de cacao"],
+    "Moka": ["café", "leche", "cacao"],
     "Patatas fritas": ["canola", "patata"],
     "Potaje": ["patata", "especia", "verdura"],
     "Puré": ["patata"],
@@ -191,16 +191,15 @@ recetas = {
     "Caramelos de menta": ["caña de azúcar", "menta"],
     "Caramelos": ["caña de azúcar"],
     "Casa de jengibre": ["trigo", "jengibre", "caña de azúcar", "vainilla", "huevo"],
-
-    "Chocolate a la menta": ["menta", "caña de azúcar", "mantequilla", "grano de cacao"],
-    "Chocolate caliente": ["grano de cacao", "leche", "caña de azúcar"],
-    "Chocolate primaveral": ["fruta ovoide", "caña de azúcar", "grano de cacao"],
-    "Cosa gris": ["grano de cacao", "leche", "mantequilla"],
+    "Chocolate a la menta": ["menta", "caña de azúcar", "mantequilla", "cacao"],
+    "Chocolate caliente": ["cacao", "leche", "caña de azúcar"],
+    "Chocolate primaveral": ["fruta ovoide", "caña de azúcar", "cacao"],
+    "Cosa gris": ["cacao", "leche", "mantequilla"],
     "Crema pastelera y frutas": ["fruta", "fruta", "fruta", "leche", "caña de azúcar"],
     "Crepe": ["trigo", "huevo", "leche", "vainilla"],
     "Cucuruchos ácidos": ["slush", "limón", "caña de azúcar"],
     "Cucuruchos": ["slush"],
-    "Cuencos de huevos de primavera": ["fruta ovoide", "verdura ovoide de primavera", "huevo salvaje de primavera", "grano de cacao", "caña de azúcar"],
+    "Cuencos de huevos de primavera": ["fruta ovoide", "verdura ovoide de primavera", "huevo salvaje de primavera", "cacao", "caña de azúcar"],
     "Cupcake de Minnie": ["mantequilla", "leche", "trigo", "caña de azúcar", "manzana"],
     "Cupcake de Spaceship Earth": ["mantequilla", "leche", "trigo", "caña de azúcar", "coco"],
     "Cupcake de Stitch": ["mantequilla", "leche", "trigo", "caña de azúcar", "arándano"],
@@ -208,17 +207,17 @@ recetas = {
     "Cupcake de sirena": ["mantequilla", "leche", "trigo", "caña de azúcar", "vieira"],
     "Ensalada de bayas": ["frambuesa", "arándano", "grosella"],
     "Galleta de 'Mi héroe'": ["trigo", "mantequilla", "especia"],
-    "Galletas con pepitas de chocolate": ["grano de cacao", "trigo", "caña de azúcar", "mantequilla"],
+    "Galletas con pepitas de chocolate": ["cacao", "trigo", "caña de azúcar", "mantequilla"],
     "Galletas de jengibre de Halloween": ["trigo", "jengibre", "calabaza"],
     "Galletas de jengibre de Minnie": ["trigo", "jengibre"],
     "Galletas del País de las Maravillas": ["mantequilla", "caña de azúcar", "vainilla", "trigo"],
     "Galletas": ["trigo", "caña de azúcar", "mantequilla"],
-    "Gofre con cocholate": ["trigo", "leche", "huevo", "grano de cacao"],
+    "Gofre con cocholate": ["trigo", "leche", "huevo", "cacao"],
     "Gofre con mantequilla de cacahuete": ["cacahuete", "trigo", "huevo", "leche"],
     "Gofre con mermelada": ["fruta", "trigo", "huevo", "leche"],
     "Gofre": ["trigo", "leche", "huevo", "especia"],
     "Helado de coco": ["coco", "caña de azúcar", "leche", "slush"],
-    "Helado de chocolate": ["grano de cacao", "caña de azúcar", "leche", "slush"],
+    "Helado de chocolate": ["cacao", "caña de azúcar", "leche", "slush"],
     "Helado de ensueño": ["fruto de Dreamlight", "leche", "slush"],
     "Helado de plátano": ["plátano", "caña de azúcar", "leche", "slush"],
     "Helado de vainilla": ["slush", "leche", "caña de azúcar", "vainilla"],
@@ -231,7 +230,7 @@ recetas = {
     "Pastéis de nata": ["maíz", "huevo", "leche", "vainilla"],
     "Patapolo": ["slush", "caña de azúcar", "fruta"],
     "Polo tropical": ["slush", "fruta", "caña de azúcar", "coco"],
-    "Red velvet": ["trigo", "queso", "huevo", "grano de cacao", "vainilla"],
+    "Red velvet": ["trigo", "queso", "huevo", "cacao", "vainilla"],
     "S'mares": ["malvavisco rosa", "malvavisco azul", "trigo", "trigo"],
     "Slush dulce": ["slush", "caña de azúcar"],
     "Sorbete de frutas": ["slush", "fruta"],
@@ -244,7 +243,7 @@ recetas = {
     "Tarta de boda": ["mantequilla", "caña de azúcar", "vainilla", "trigo", "huevo"],
     "Tarta de cerezas": ["cereza", "trigo", "mantequilla"],
     "Tarta de coco": ["coco", "trigo", "huevo", "caña de azúcar"],
-    "Tarta de cumpleaños": ["grano de cacao", "trigo", "caña de azúcar", "huevo", "mantequilla"],
+    "Tarta de cumpleaños": ["cacao", "trigo", "caña de azúcar", "huevo", "mantequilla"],
     "Tarta de frutas": ["fruta", "trigo", "mantequilla"],
     "Tarta de grosellas de Blancanieves": ["grosellas", "trigo", "mantequilla"],
     "Tarta de manzana": ["manzana", "trigo", "mantequilla"],
@@ -253,7 +252,7 @@ recetas = {
     "Tarta de queso": ["queso", "trigo", "caña de azúcar", "fruta"],
     "Tarta de zanahoria": ["zanahoria", "trigo", "huevo", "caña de azúcar"],
     "Tarta extravagante": ["fruto de Dreamlight", "trigo", "mantequilla"],
-    "Tronco de navidad": ["trigo", "grano de cacao", "vainilla", "cereza"],
+    "Tronco de navidad": ["trigo", "cacao", "vainilla", "cereza"],
     "Té de burbujas de coco": ["caña de azúcar", "leche", "coco"],
     "Té de burbujas de frambuesa": ["caña de azúcar", "leche", "frambuesa"],
     "Té de burbujas de grosellas": ["caña de azúcar", "leche", "grosella"],
@@ -268,33 +267,30 @@ recetas = {
 def bienvenida(message):
     texto = (
         "👋 ¡Hola! Bienvenido/a al recetario interactivo.\n\n"
-        "📌 Por favor, **escribe los ingredientes con tilde si llevan tilde**, así puedo reconocerlos correctamente.\n\n"
-        "🥄 Puedes escribirme los ingredientes que tienes separados por comas (ej: *zanahoria, almeja*), "
-        "y yo te diré qué recetas puedes hacer.\n\n"
-        "📚 También puedes ver el recetario con estos comandos:\n"
-        "  - /recetario → ver todo el recetario completo\n"
-        "  - /aperitivos → ver solo los aperitivos\n"
-        "  - /entrantes → ver los entrantes\n"
-        "  - /postres → ver solo los postres\n\n"
-        "¡Escribe lo que tengas y manos a la cocina! 🍳"
-    )
-    bot.send_message(message.chat.id, texto, parse_mode="Markdown")
+
+        "📌 **Instrucciones generales:**\n"
+        "  - Escribe los ingredientes o el nombre de una receta con tilde si corresponde.\n"
+        "  - Asegúrate de escribir los ingredientes o las recetas tal como aparecen en el juego.\n\n"
+
+        "🥄 **¿Qué puedes hacer?**\n"
+
+        "1️⃣ **Buscar recetas por ingredientes**\n"
+        "   - Escribe los ingredientes que tienes separados por comas (ej: *zanahoria, almeja*) y yo te diré qué recetas puedes hacer con esos ingredientes.\n\n"
+
+        "2️⃣ **Buscar recetas por platillo**\n"
+        "   - Escribe el nombre de un platillo (ej: *paella*) y te diré los ingredientes que necesitas para hacerlo.\n\n"
+
+        "3️⃣ **Ver recetas por categoría**\n"
+        "   - Usa los siguientes comandos para ver recetas por tipo:\n"
+        "     - *'/aperitivos'* → Ver solo los aperitivos\n"
+        "     - *'/entrantes'* → Ver solo los entrantes\n"
+        "     - *'/postres'* → Ver solo los postres\n\n"
+
+            "¡Escribe lo que tengas y manos a la cocina! 🍳"
+        )
+bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
 # Comandos para mostrar secciones del recetario
-@bot.message_handler(commands=['recetario'])
-def mostrar_recetario_completo(message):
-    texto = "*📖 Recetario completo*\n\n"
-
-    # Recetas por categoría
-    for categoria, platillos in recetas.items():
-        texto += f"🍽️ *{categoria}:*\n"
-        for nombre_receta, ingredientes in platillos.items():
-            ingredientes_texto = "\n  - ".join(ingredientes)
-            texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
-        texto += "\n"
-
-    bot.send_message(message.chat.id, texto, parse_mode="Markdown")
-
 @bot.message_handler(commands=['aperitivos'])
 def mostrar_aperitivos(message):
     texto = "*🍢 Aperitivos:*\n"
@@ -318,6 +314,73 @@ def mostrar_postres(message):
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
+
+#Buscar platillo por nombre
+@bot.message_handler(func=lambda message: True)
+def responder_mensaje(message):
+    texto = message.text.strip().lower()
+
+    import unicodedata
+    def quitar_acentos(txt):
+        return ''.join(c for c in unicodedata.normalize('NFD', txt) if unicodedata.category(c) != 'Mn')
+
+    texto_sin_acentos = quitar_acentos(texto)
+
+    # Primero se verifica si es un nombre de platillo
+    for categoria, lista_recetas in recetas.items():
+        for nombre_receta, ingredientes in lista_recetas.items():
+            nombre_normalizado = quitar_acentos(nombre_receta.lower())
+            if texto_sin_acentos == nombre_normalizado:
+                detalle = []
+                for ing in ingredientes:
+                    ing_lower = ing.lower()
+                    if ing_lower in ingredientes_categoria:
+                        posibles = ", ".join(ingredientes_categoria[ing_lower])
+                        detalle.append(f"- {ing} (puede ser: {posibles})")
+                    else:
+                        detalle.append(f"- {ing}")
+                respuesta = f"📋 *{nombre_receta}* lleva:\n\n" + "\n".join(detalle)
+                bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
+                return
+
+    # Si no encuentra la receta, busca ingredientes como lo hacía antes
+    entrada = [i.strip().lower() for i in message.text.split(",")]
+    ingredientes_usuario = set(entrada)
+
+    categorias_usuario = set()
+    for ing in ingredientes_usuario:
+        cat = ingrediente_a_categoria.get(ing)
+        if cat:
+            categorias_usuario.add(cat)
+
+    recetas_posibles = []
+
+    # Recorrer todas las recetas de cada categoría
+    for categoria in recetas:
+        for nombre_receta, ingredientes_receta in recetas[categoria].items():
+            posibles = True
+            detalle_ingredientes = []
+
+            for ing in ingredientes_receta:
+                ing_lower = ing.lower()
+                if ing_lower in ingredientes_usuario:
+                    detalle_ingredientes.append(f"- {ing} (lo tienes)")
+                elif ing_lower in ingredientes_categoria and ing_lower in categorias_usuario:
+                    opciones = ", ".join(ingredientes_categoria[ing_lower])
+                    detalle_ingredientes.append(f"- {ing} (puede ser: {opciones})")
+                else:
+                    posibles = False
+                    break
+
+            if posibles:
+                recetas_posibles.append(f"🍽️ *{nombre_receta}*:\n" + "\n".join(detalle_ingredientes))
+
+    if recetas_posibles:
+        respuesta = "Con lo que tienes, podrías preparar:\n\n" + "\n\n".join(recetas_posibles)
+    else:
+        respuesta = "😕 No encontré recetas que puedas hacer con eso. Prueba con más ingredientes."
+
+    bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
 
 # Búsqueda de recetas según ingredientes del usuario
 @bot.message_handler(func=lambda message: True)
