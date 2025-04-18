@@ -24,6 +24,11 @@ ingredientes_categoria = {
     "marisco": [
         "Almeja", "Ostra", "Vieira"
     ]
+    
+    ],
+    "pescado": [
+        "Rape", "Lubina", "Besugo", "Carpa", Pez gato, Bacalao, Pez globo, Arenque, Caballa real, Lanzón, Perca, Pike, Trucha arcoíris, Salmón, Lenguado, Pez espada, Tilapia, Atún, Lucioperca, Esturión"
+    ]
 }
 
 # Invertimos el diccionario: ingrediente específico -> categoría
@@ -320,36 +325,52 @@ def responder_ingredientes(message):
     entrada = [i.strip().lower() for i in message.text.split(",")]
     ingredientes_usuario = set(entrada)
 
+    # Lista con nombres normalizados que el usuario tiene
+    usuario_normalizado = set()
+    for lista in ingredientes_categoria.values():
+        usuario_normalizado.update(i.lower() for i in lista if i.lower() in ingredientes_usuario)
+    usuario_normalizado.update(ingredientes_usuario)
+
     recetas_posibles = []
 
-    # Buscar si algún ingrediente pertenece a una categoría
-    categorias_usuario = set()
+    for categoria, lista_recetas in recetas.items():
+        for nombre_receta, ingredientes_receta in lista_recetas.items():
+            posible = True
+            detalle_ingredientes = []
 
-    # Verificar las categorías de los ingredientes ingresados
-    for ing in ingredientes_usuario:
-        for categoria, ingredientes_categoria_list in ingredientes_categoria.items():
-            if ing.capitalize() in ingredientes_categoria_list:
-                categorias_usuario.add(categoria)
+            for ingrediente in ingredientes_receta:
+                ingrediente_lower = ingrediente.lower()
 
-        # Buscar en todas las categorías
-        for categoria, lista_recetas in recetas.items():
-            for receta, ingredientes in lista_recetas.items():
-                ingredientes_receta = set(ingredientes)
-                faltantes = ingredientes_receta - ingredientes_usuario  # Ingredientes que faltan
+                # ¿Es una categoría general?
+                if ingrediente_lower in ingredientes_categoria:
+                    opciones_validas = [
+                        i for i in ingredientes_categoria[ingrediente_lower]
+                        if i.lower() in usuario_normalizado
+                    ]
+                    if opciones_validas:
+                        opciones_str = ", ".join(opciones_validas)
+                        detalle_ingredientes.append(f"- {ingrediente} (puede ser: {opciones_str})")
+                    else:
+                        posible = False
+                        break
 
-                # Si todos los ingredientes están disponibles
-                if len(faltantes) == 0:
-                    # Verificar si la receta tiene ingredientes en común con las categorías del usuario
-                    ingredientes_texto = "\n  - ".join(ingredientes)
-                    recetas_posibles.append(f"🍽️ *{receta}*\n  - {ingredientes_texto}")
+                # Si lo tiene directo
+                elif ingrediente_lower in usuario_normalizado:
+                    detalle_ingredientes.append(f"- {ingrediente}")
 
-        # Mostrar resultados
-        if recetas_posibles:
-            respuesta = "Con lo que tienes, podrías preparar:\n\n" + "\n\n".join(recetas_posibles)
-        else:
-            respuesta = "😕 No encontré recetas que puedas hacer con eso. Prueba con más ingredientes."
+                else:
+                    posible = False
+                    break
+
+            if posible:
+                recetas_posibles.append(f"🍽️ *{nombre_receta}*:\n" + "\n".join(detalle_ingredientes))
+
+    if recetas_posibles:
+        respuesta = "Con lo que tienes, podrías preparar:\n\n" + "\n\n".join(recetas_posibles)
+    else:
+        respuesta = "😔 No encontré recetas que puedas hacer con esos ingredientes. Intenta con otros."
 
     bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
-
-    # ¡Arrancar el bot!
-    bot.polling()
+    
+# ¡Arrancar el bot!
+bot.polling()
