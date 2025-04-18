@@ -101,7 +101,7 @@ recetas = {
     "Verduritas": ["pimiento", "zanahoria", "pepino", "champiñones", "calabacín"]
 },
 
-'Entrantes 1': {
+'Entrantes1': {
     "Bacalao al horno crujiente": ["bacalao", "trigo"],
     "Bacalao al horno crujiente con queso": ["bacalao", "trigo", "queso"],
     "Banquete de leona": ["champiñones", "tomate", "orégano", "pez del Aquí y Allí"],
@@ -150,7 +150,7 @@ recetas = {
     "Nachos": ["chili", "maíz", "queso"],
 },
     
-'Entrantes 2': {
+'Entrantes2': {
     "Paella de lanzón": ["lanzón", "gamba", "marisco", "tomate", "arroz"],
     "Pasta con marisco": ["marisco", "trigo", "leche"],
     "Pasta con pescado": ["pescado", "ajo", "trigo", "leche"],
@@ -199,7 +199,7 @@ recetas = {
     "Vieiras cremosas al ajo": ["vieira", "limón", "mantequilla", "ajo"]
 },
 
-'Postres 1': {
+'Postres1': {
     "Banana Split": ["slush", "plátano", "leche", "caña de azúcar", "caña de azúcar"],
     "Batido": ["leche"],
     "Buñuelos": ["canola", "trigo", "huevo", "caña de azúcar"],
@@ -245,7 +245,7 @@ recetas = {
     "Pastel de fruta": ["trigo", "fruta", "fruta", "fruta"],
 },
 
-'Postres 2': {
+'Postres2': {
     "Pastéis de nata": ["maíz", "huevo", "leche", "vainilla"],
     "Patapolo": ["slush", "caña de azúcar", "fruta"],
     "Polo tropical": ["slush", "fruta", "caña de azúcar", "coco"],
@@ -316,32 +316,32 @@ def mostrar_aperitivos(message):
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
-@bot.message_handler(commands=['entrantes'])  
-def mostrar_entrantes_1(message):
+@bot.message_handler(commands=['entrantes1'])  
+def mostrar_entrantes1(message):
     texto = "*🍽️ Entrantes 1:*\n"
     for nombre_receta, ingredientes in recetas['Entrantes 1'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
-@bot.message_handler(commands=['entrantes'])  
-def mostrar_entrantes_2(message):
+@bot.message_handler(commands=['entrantes2'])  
+def mostrar_entrantes2(message):
     texto = "*🍽️ Entrantes 2:*\n"
     for nombre_receta, ingredientes in recetas['Entrantes 2'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
-@bot.message_handler(commands=['postres'])
-def mostrar_postres_1(message):
+@bot.message_handler(commands=['postres1'])
+def mostrar_postres1(message):
     texto = "*🍰 Postres 1:*\n"
     for nombre_receta, ingredientes in recetas['Postres 1'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
-@bot.message_handler(commands=['postres'])
-def mostrar_postres_2(message):
+@bot.message_handler(commands=['postres2'])
+def mostrar_postres2(message):
     texto = "*🍰 Postres 2:*\n"
     for nombre_receta, ingredientes in recetas['Postres 2'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
