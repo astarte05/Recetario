@@ -35,7 +35,7 @@ ingrediente_a_categoria = {
 
 # Diccionario de recetas: nombre -> ingredientes (pueden ser genéricos o específicos)
 recetas = {
-'Aperitivos': [
+'Aperitivos': {
     "Aperitivos de marisco": ["marisco"],
     "Arenque dulce": ["arenque", "cebolla"],
     "Arenque en escabeche de Arendelle": ["arenque", "limón", "cebolla", "ajo", "especia"],
@@ -81,9 +81,9 @@ recetas = {
     "Té oolong": ["hojas de té oolong", "frambuesa"],
     "Verduras a la parrilla": ["espárrago", "bambú", "brócoli", "coliflor", "apio", "chili", "maíz", "berenjena", "cebolla", "calabaza", "algas", "espinacas", "rábano"],
     "Verduritas": ["pimiento", "zanahoria", "pepino", "champiñones", "calabacín"]
-],
-    
-'Entrantes': [
+},
+
+'Entrantes': {
     "Bacalao al horno crujiente": ["bacalao", "trigo"],
     "Bacalao al horno crujiente con queso": ["bacalao", "trigo", "queso"],
     "Banquete de leona": ["champiñones", "tomate", "orégano", "pez del Aquí y Allí"],
@@ -254,9 +254,9 @@ recetas = {
     "Té de burbujas de menta": ["caña de azúcar", "leche", "menta"],
     "Té de burbujas": ["caña de azúcar", "leche"],
     "Zarzaparrilla": ["jengibre", "caña de azúcar", "vainilla"]
-    ]
+    }
 }
-    
+
 # 📩 Mensaje de bienvenida con instrucciones claras
 @bot.message_handler(commands=['start'])
 def bienvenida(message):
