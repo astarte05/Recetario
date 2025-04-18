@@ -430,7 +430,11 @@ def webhook():
 def index():
     return "Bot activo", 200
 
-@app.before_first_request
-def setup_webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url=f"{WEBHOOK_URL}/{TOKEN}")
+if __name__ == "__main__":
+    with app.app_context():
+        bot.remove_webhook()
+        bot.set_webhook(url=f"{WEBHOOK_URL}/{TOKEN}")
+
+    # Render asigna el puerto como variable de entorno
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
