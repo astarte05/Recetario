@@ -9,3 +9,7 @@ authors = ["Replit User"]
 python = ">=3.11"
 pyTelegramBotAPI = ">=4.26.0"
 python-dotenv = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

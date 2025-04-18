@@ -1,14 +1,22 @@
 import telebot
-
-from dotenv import load_dotenv
 import os
 
-# Cargar variables de entorno
-load_dotenv()
+# Obtenemos el token desde los Secrets de Replit
+TOKEN = os.getenv('TELEGRAM_TOKEN')
 
-# Token del bot
-TOKEN = os.getenv('BOT_TOKEN')
+if not TOKEN:
+    print("❌ ¡ERROR! El token no se cargó.")
+else:
+    print("✅ Token cargado correctamente.")
+
 bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.reply_to(message, "¡Hola! Soy tu bot de prueba.")
+
+# Inicia el bot
+bot.polling(none_stop=True)
 
 # Diccionario de categorías de ingredientes
 ingredientes_categoria = {
