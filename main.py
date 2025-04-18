@@ -331,27 +331,25 @@ def responder_ingredientes(message):
             if ing.capitalize() in ingredientes_categoria_list:
                 categorias_usuario.add(categoria)
 
-    # Buscar en todas las categorías
-    for categoria, lista_recetas in recetas.items():
-        for receta, ingredientes in lista_recetas.items():
-   ingredientes_receta = set(ingredientes)
-    faltantes = ingredientes_receta - ingredientes_usuario  # Ingredientes que faltan
+        # Buscar en todas las categorías
+        for categoria, lista_recetas in recetas.items():
+            for receta, ingredientes in lista_recetas.items():
+                ingredientes_receta = set(ingredientes)
+                faltantes = ingredientes_receta - ingredientes_usuario  # Ingredientes que faltan
 
-    # Si todos los ingredientes están disponibles
-    if len(faltantes) == 0:
-        # Verificar si la receta tiene ingredientes en común con las categorías del usuario
-        ingredientes_receta_lower = [ing.lower() for ing in ingredientes_receta]
-        if categorias_usuario.intersection(set(cat for ing in ingredientes_receta_lower for cat, items in ingredientes_categoria.items() if ing in [i.lower() for i in items])):
-            ingredientes_texto = "\n  - ".join(ingredientes)
-            recetas_posibles.append(f"🍽️ *{receta}*\n  - {ingredientes_texto}")
+                # Si todos los ingredientes están disponibles
+                if len(faltantes) == 0:
+                    # Verificar si la receta tiene ingredientes en común con las categorías del usuario
+                    ingredientes_texto = "\n  - ".join(ingredientes)
+                    recetas_posibles.append(f"🍽️ *{receta}*\n  - {ingredientes_texto}")
 
-# Mostrar resultados
-if recetas_posibles:
-respuesta = "Con lo que tienes, podrías preparar:\n\n" + "\n\n".join(recetas_posibles)
-else:
-respuesta = "😕 No encontré recetas que puedas hacer con eso. Prueba con más ingredientes."
+        # Mostrar resultados
+        if recetas_posibles:
+            respuesta = "Con lo que tienes, podrías preparar:\n\n" + "\n\n".join(recetas_posibles)
+        else:
+            respuesta = "😕 No encontré recetas que puedas hacer con eso. Prueba con más ingredientes."
 
-bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
+    bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
 
-# ¡Arrancar el bot!
-bot.polling()
+    # ¡Arrancar el bot!
+    bot.polling()
