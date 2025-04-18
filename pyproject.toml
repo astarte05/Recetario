@@ -1,9 +1,11 @@
-[project]
-name = "python-template"
+
+[tool.poetry]
+name = "telegram-bot"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
-requires-python = ">=3.11"
-dependencies = [
-    "pytelegrambotapi>=4.26.0",
-]
+description = "Bot de Telegram para recetas"
+authors = ["Replit User"]
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+pyTelegramBotAPI = ">=4.26.0"
+python-dotenv = "*"
