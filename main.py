@@ -7,27 +7,33 @@ bot = telebot.TeleBot(TOKEN)
 # Diccionario de categorías de ingredientes
 ingredientes_categoria = {
     "verdura": [
-        "Seta", "Pepino", "Zanahoria", "Aji", "Pimiento", "Berenjena", "Puerro",
-        "Tomate", "Esparrago", "Espárrago", "Calabacin", "Calabacín", "Cebolla",
-        "Patata", "Calabaza", "Espinaca", "Lechuga", "Quimbombó", "Quimbombo"
+        "Algas", "Brenjena", "Calabacín", "Calabaza", "Cebolla", "Seta", "Ají",
+        "Espárrago", "Espinacas", "Lechuga", "Maíz",
+        "Okra", "Patata", "Pepino", "Pimiento", "Puerro", "Tomate", "Zanahoria", "Quimbombó"
     ],
     "especia": [
-        "Jengibre", "Ajo", "Albahaca", "Vainilla", "Orégano", "Oregano", "Menta"
+        "Jengibre", "Ajo", "Albahaca", "Orégano", "Menta"
     ],
     "fruta": [
-        "Manzana", "Plátano", "Platano", "Grosella", "Cereza", "Frambuesa", "Coco",
-        "Arándano", "Arandano", "Limón", "Limon"
+        "Manzana", "Plátano", "Grosella", "Cereza", "Frambuesa", "Coco",
+        "Arándano", "Limón"
     ],
     "grano": [
-        "Trigo", "Maíz", "Maiz", "Arroz", "Canola", "Caña de azúcar", "Soja", "Café", "Cacao"
+        "Trigo", "Maíz", "Arroz"
+    ],
+    "dulce": [
+        "Caña de azúcar", "Cacao", "Vainilla"
     ],
     "marisco": [
-        "Almeja", "Ostra", "Vieira"
+        "Almeja", "Cangrejo", "Vieira", "Bogavante", "Ostra", "Gamba", "Calamar"
     ],
     "pescado": [
         "Rape", "Lubina", "Besugo", "Carpa", "Pez gato", "Bacalao", "Pez globo", 
-        "Arenque", "Caballa real", "Lanzón", "Perca", "Pike", "Trucha arcoiris", 
-        "Salmón", "Lenguado", "Pez espada", "Tilapia", "Atún", "Lucioperca", "Esturión", "Pez", "Pescado"
+        "Arenque", "Caballa real", "Lanzón", "Perca", "Lucio", "Trucha arcoiris", 
+        "Salmón", "Lenguado", "Pez espada", "Tilapia", "Atún", "Lucioperca", "Esturión"
+    ],
+    "otros": [
+        "Leche", "Queso", "Mantequilla", "Huevos", "Canola", "Soja", "Cacahuete", "Slush"
     ]
 }
 
@@ -41,7 +47,7 @@ ingrediente_a_categoria = {
 # Diccionario de recetas: nombre -> ingredientes (pueden ser genéricos o específicos)
 recetas = {
 'Aperitivos': {
-    "Aperitivos de marisco": ["marisco"],
+    "Aperitivos de marisco": ["marisco"], ["estrellas: 1"],
     "Arenque dulce": ["arenque", "cebolla"],
     "Arenque en escabeche de Arendelle": ["arenque", "limón", "cebolla", "ajo", "especia"],
     "Arenque en escabeche": ["arenque", "limón", "cebolla", "especia"],
@@ -267,28 +273,24 @@ recetas = {
 def bienvenida(message):
     texto = (
         "👋 ¡Hola! Bienvenido/a al recetario interactivo.\n\n"
-
         "📌 **Instrucciones generales:**\n"
-        "  - Escribe los ingredientes o el nombre de una receta con tilde si corresponde.\n"
-        "  - Asegúrate de escribir los ingredientes o las recetas tal como aparecen en el juego.\n\n"
-
+        "  ♡︎ Escribe los ingredientes o el nombre de una receta con tilde si corresponde.\n"
+        "  ♡︎ Asegúrate de escribir los ingredientes o las recetas tal como aparecen en el juego.\n\n"
         "🥄 **¿Qué puedes hacer?**\n"
-
         "1️⃣ **Buscar recetas por ingredientes**\n"
-        "   - Escribe los ingredientes que tienes separados por comas (ej: *zanahoria, almeja*) y yo te diré qué recetas puedes hacer con esos ingredientes.\n\n"
-
+        "   ♡︎ Escribe los ingredientes que tienes separados por comas (ej: *zanahoria, almeja*) y yo te diré qué recetas puedes hacer con esos ingredientes.\n\n"
         "2️⃣ **Buscar recetas por platillo**\n"
-        "   - Escribe el nombre de un platillo (ej: *paella*) y te diré los ingredientes que necesitas para hacerlo.\n\n"
-
+        "   ♡︎ Escribe el nombre de un platillo (ej: *macedonia*) y te diré los ingredientes que necesitas para hacerlo.\n\n"
         "3️⃣ **Ver recetas por categoría**\n"
-        "   - Usa los siguientes comandos para ver recetas por tipo:\n"
-        "     - *'/aperitivos'* → Ver solo los aperitivos\n"
-        "     - *'/entrantes'* → Ver solo los entrantes\n"
-        "     - *'/postres'* → Ver solo los postres\n\n"
-
-            "¡Escribe lo que tengas y manos a la cocina! 🍳"
-        )
-bot.send_message(message.chat.id, texto, parse_mode="Markdown")
+        "   ♡︎ Usa los siguientes comandos para ver recetas por tipo:\n"
+        "     ʚ *'/aperitivos'* → Ver solo los aperitivos\n"
+        "     ʚ *'/entrantes'* → Ver solo los entrantes\n"
+        "     ʚ *'/postres'* → Ver solo los postres\n\n"
+        "4️⃣ **Recetas con varios tipos de ingredientes**\n"
+        "   ♡︎ Para saber qué tipos de ingredientes puedes usar, puedes utilizar el comando '/ingredientes'.\n\n"
+        "¡Escribe lo que tengas y manos a la cocina! 🍳"
+    )
+    bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
 # Comandos para mostrar secciones del recetario
 @bot.message_handler(commands=['aperitivos'])
@@ -313,6 +315,21 @@ def mostrar_postres(message):
     for nombre_receta, ingredientes in recetas['Postres'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
+    bot.send_message(message.chat.id, texto, parse_mode="Markdown")
+
+@bot.message_handler(commands=['ingredientes'])
+def mostrar_ingredientes(message):
+    texto = "📦 *Categorías de ingredientes y ejemplos:*\n\n"
+    for categoria, items in ingredientes_categoria.items():
+        lista = ", ".join(items)
+        texto += f"🔹 *{categoria.capitalize()}* → {lista}\n\n"
+
+    texto += (
+        "📝 Algunas recetas pueden usar cualquiera de los ingredientes dentro de una categoría. "
+        "Por ejemplo, si una receta pide una *fruta*, puedes usar manzana, plátano, limón, etc.\n\n"
+        "Esto te permite más flexibilidad al cocinar con lo que tengas a mano. 🍽️"
+    )
+
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
 #Buscar platillo por nombre
