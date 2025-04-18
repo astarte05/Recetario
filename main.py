@@ -47,7 +47,7 @@ ingrediente_a_categoria = {
 # Diccionario de recetas: nombre -> ingredientes (pueden ser genéricos o específicos)
 recetas = {
 'Aperitivos': {
-    "Aperitivos de marisco": ["marisco"], ["estrellas: 1"],
+    "Aperitivos de marisco": ["marisco"],
     "Arenque dulce": ["arenque", "cebolla"],
     "Arenque en escabeche de Arendelle": ["arenque", "limón", "cebolla", "ajo", "especia"],
     "Arenque en escabeche": ["arenque", "limón", "cebolla", "especia"],
@@ -163,7 +163,7 @@ recetas = {
     "Plato principal de pescado a la parrilla": ["pescado", "verdura"],
     "Poutine": ["patata", "canola", "queso"],
     "Rape frito": ["rape", "tomate", "pepino", "patata"],
-    "Ratatouille": ["tomate", "berenjena", "pepino", "cebolla", "especia"],
+    "Ratatouille": ["tomate", "berenjena", "calabacín", "cebolla", "especia"],
     "Risotto de pescado": ["pescado", "arroz", "mantequilla"],
     "Sake Maki": ["arroz", "algas", "salmón"],
     "Sake Sushi": ["salmón", "arroz"],
@@ -332,7 +332,6 @@ def mostrar_ingredientes(message):
 
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
-#Buscar platillo por nombre
 @bot.message_handler(func=lambda message: True)
 def responder_mensaje(message):
     texto = message.text.strip().lower()
@@ -343,7 +342,7 @@ def responder_mensaje(message):
 
     texto_sin_acentos = quitar_acentos(texto)
 
-    # Primero se verifica si es un nombre de platillo
+### 🔍 Si es un nombre de platillo exacto
     for categoria, lista_recetas in recetas.items():
         for nombre_receta, ingredientes in lista_recetas.items():
             nombre_normalizado = quitar_acentos(nombre_receta.lower())
@@ -360,55 +359,20 @@ def responder_mensaje(message):
                 bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
                 return
 
-    # Si no encuentra la receta, busca ingredientes como lo hacía antes
-    entrada = [i.strip().lower() for i in message.text.split(",")]
+### 🧂 Si no es nombre de receta, asume que son ingredientes
+    entrada = [i.strip().lower() for i in texto.split(",")]
     ingredientes_usuario = set(entrada)
 
-    categorias_usuario = set()
-    for ing in ingredientes_usuario:
-        cat = ingrediente_a_categoria.get(ing)
-        if cat:
-            categorias_usuario.add(cat)
-
-    recetas_posibles = []
-
-    # Recorrer todas las recetas de cada categoría
-    for categoria in recetas:
-        for nombre_receta, ingredientes_receta in recetas[categoria].items():
-            posibles = True
-            detalle_ingredientes = []
-
-            for ing in ingredientes_receta:
-                ing_lower = ing.lower()
-                if ing_lower in ingredientes_usuario:
-                    detalle_ingredientes.append(f"- {ing} (lo tienes)")
-                elif ing_lower in ingredientes_categoria and ing_lower in categorias_usuario:
-                    opciones = ", ".join(ingredientes_categoria[ing_lower])
-                    detalle_ingredientes.append(f"- {ing} (puede ser: {opciones})")
-                else:
-                    posibles = False
-                    break
-
-            if posibles:
-                recetas_posibles.append(f"🍽️ *{nombre_receta}*:\n" + "\n".join(detalle_ingredientes))
-
-    if recetas_posibles:
-        respuesta = "Con lo que tienes, podrías preparar:\n\n" + "\n\n".join(recetas_posibles)
-    else:
-        respuesta = "😕 No encontré recetas que puedas hacer con eso. Prueba con más ingredientes."
-
-    bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
-
-# Búsqueda de recetas según ingredientes del usuario
-@bot.message_handler(func=lambda message: True)
-def responder_ingredientes(message):
-    entrada = [i.strip().lower() for i in message.text.split(",")]
-    ingredientes_usuario = set(entrada)
-
-    # Lista con nombres normalizados que el usuario tiene
     usuario_normalizado = set()
-    for lista in ingredientes_categoria.values():
-        usuario_normalizado.update(i.lower() for i in lista if i.lower() in ingredientes_usuario)
+    categorias_usuario = {}
+
+# Relacionar ingredientes a sus categorías
+    for cat, lista in ingredientes_categoria.items():
+        for item in lista:
+            if item.lower() in ingredientes_usuario:
+                usuario_normalizado.add(item.lower())
+                categorias_usuario[cat.lower()] = item.lower()
+
     usuario_normalizado.update(ingredientes_usuario)
 
     recetas_posibles = []
@@ -418,26 +382,22 @@ def responder_ingredientes(message):
             posible = True
             detalle_ingredientes = []
 
-            for ingrediente in ingredientes_receta:
-                ingrediente_lower = ingrediente.lower()
+            for ing in ingredientes_receta:
+                ing_lower = ing.lower()
 
-                # ¿Es una categoría general?
-                if ingrediente_lower in ingredientes_categoria:
-                    opciones_validas = [
-                        i for i in ingredientes_categoria[ingrediente_lower]
+                if ing_lower in ingredientes_categoria:
+                    # ¿Tiene algún ingrediente de esa categoría?
+                    coincidencias = [
+                        i for i in ingredientes_categoria[ing_lower]
                         if i.lower() in usuario_normalizado
                     ]
-                    if opciones_validas:
-                        opciones_str = ", ".join(opciones_validas)
-                        detalle_ingredientes.append(f"- {ingrediente} (puede ser: {opciones_str})")
+                    if coincidencias:
+                        detalle_ingredientes.append(f"- {ing} ({coincidencias[0]})")
                     else:
                         posible = False
                         break
-
-                # Si lo tiene directo
-                elif ingrediente_lower in usuario_normalizado:
-                    detalle_ingredientes.append(f"- {ingrediente}")
-
+                elif ing_lower in usuario_normalizado:
+                    detalle_ingredientes.append(f"- {ing}")
                 else:
                     posible = False
                     break
@@ -446,9 +406,9 @@ def responder_ingredientes(message):
                 recetas_posibles.append(f"🍽️ *{nombre_receta}*:\n" + "\n".join(detalle_ingredientes))
 
     if recetas_posibles:
-        respuesta = "Con lo que tienes, podrías preparar:\n\n" + "\n\n".join(recetas_posibles)
+        respuesta = "✨ Con lo que tienes, podrías preparar:\n\n" + "\n\n".join(recetas_posibles)
     else:
-        respuesta = "😔 No encontré recetas que puedas hacer con esos ingredientes. Intenta con otros."
+        respuesta = "😕 No encontré recetas que puedas hacer con eso. Prueba con más ingredientes."
 
     bot.send_message(message.chat.id, respuesta, parse_mode="Markdown")
     
