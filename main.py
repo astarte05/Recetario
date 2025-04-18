@@ -101,7 +101,7 @@ recetas = {
     "Verduritas": ["pimiento", "zanahoria", "pepino", "champiñones", "calabacín"]
 },
 
-'Entrantes': {
+'Entrantes 1': {
     "Bacalao al horno crujiente": ["bacalao", "trigo"],
     "Bacalao al horno crujiente con queso": ["bacalao", "trigo", "queso"],
     "Banquete de leona": ["champiñones", "tomate", "orégano", "pez del Aquí y Allí"],
@@ -148,6 +148,9 @@ recetas = {
     "Mariscada": ["marisco", "especia", "patata", "maíz"],
     "Mermelada maravillosa": ["fruto de Dreamlight", "trigo"],
     "Nachos": ["chili", "maíz", "queso"],
+},
+    
+'Entrantes 2': {
     "Paella de lanzón": ["lanzón", "gamba", "marisco", "tomate", "arroz"],
     "Pasta con marisco": ["marisco", "trigo", "leche"],
     "Pasta con pescado": ["pescado", "ajo", "trigo", "leche"],
@@ -196,7 +199,7 @@ recetas = {
     "Vieiras cremosas al ajo": ["vieira", "limón", "mantequilla", "ajo"]
 },
 
-'Postres': {
+'Postres 1': {
     "Banana Split": ["slush", "plátano", "leche", "caña de azúcar", "caña de azúcar"],
     "Batido": ["leche"],
     "Buñuelos": ["canola", "trigo", "huevo", "caña de azúcar"],
@@ -240,6 +243,9 @@ recetas = {
     "Malvavisco asado": ["malvavisco rosa", "malvavisco rosa", "malvavisco azul", "malvavisco azul"],
     "Manzanas al caramelo": ["caña de azúcar", "manzana"],
     "Pastel de fruta": ["trigo", "fruta", "fruta", "fruta"],
+},
+
+'Postres 2': {
     "Pastéis de nata": ["maíz", "huevo", "leche", "vainilla"],
     "Patapolo": ["slush", "caña de azúcar", "fruta"],
     "Polo tropical": ["slush", "fruta", "caña de azúcar", "coco"],
@@ -291,8 +297,10 @@ def bienvenida(message):
         "3️⃣ **Ver recetas por categoría**\n"
         "   ♡︎ Usa los siguientes comandos para ver recetas por tipo:\n"
         "     ʚ *'/aperitivos'* → Ver solo los aperitivos\n"
-        "     ʚ *'/entrantes'* → Ver solo los entrantes\n"
-        "     ʚ *'/postres'* → Ver solo los postres\n\n"
+        "     ʚ *'/entrantes 1'* → Ver solo los entrantes 1\n"
+        "     ʚ *'/entrantes 2'* → Ver solo los entrantes 2\n"
+        "     ʚ *'/postres 1'* → Ver solo los postres 1\n\n"
+        "     ʚ *'/postres 2'* → Ver solo los postres 2\n\n"
         "4️⃣ **Recetas con varios tipos de ingredientes**\n"
         "   ♡︎ Para saber qué tipos de ingredientes puedes usar, puedes utilizar el comando '/ingredientes'.\n\n"
         "¡Escribe lo que tengas y manos a la cocina! 🍳"
@@ -309,17 +317,33 @@ def mostrar_aperitivos(message):
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
 @bot.message_handler(commands=['entrantes'])  
-def mostrar_entrantes(message):
-    texto = "*🍽️ Entrantes:*\n"
-    for nombre_receta, ingredientes in recetas['Entrantes'].items():
+def mostrar_entrantes_1(message):
+    texto = "*🍽️ Entrantes 1:*\n"
+    for nombre_receta, ingredientes in recetas['Entrantes 1'].items():
+        ingredientes_texto = "\n  - ".join(ingredientes)
+        texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
+    bot.send_message(message.chat.id, texto, parse_mode="Markdown")
+
+@bot.message_handler(commands=['entrantes'])  
+def mostrar_entrantes_2(message):
+    texto = "*🍽️ Entrantes 2:*\n"
+    for nombre_receta, ingredientes in recetas['Entrantes 2'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
 @bot.message_handler(commands=['postres'])
-def mostrar_postres(message):
-    texto = "*🍰 Postres:*\n"
-    for nombre_receta, ingredientes in recetas['Postres'].items():
+def mostrar_postres_1(message):
+    texto = "*🍰 Postres 1:*\n"
+    for nombre_receta, ingredientes in recetas['Postres 1'].items():
+        ingredientes_texto = "\n  - ".join(ingredientes)
+        texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
+    bot.send_message(message.chat.id, texto, parse_mode="Markdown")
+
+@bot.message_handler(commands=['postres'])
+def mostrar_postres_2(message):
+    texto = "*🍰 Postres 2:*\n"
+    for nombre_receta, ingredientes in recetas['Postres 2'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
