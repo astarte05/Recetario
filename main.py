@@ -316,34 +316,34 @@ def mostrar_aperitivos(message):
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
-@bot.message_handler(commands=['entrantes1'])  
+@bot.message_handler(commands=['entrantes1'])
 def mostrar_entrantes1(message):
-    texto = "*🍽️ Entrantes 1:*\n"
-    for nombre_receta, ingredientes in recetas['Entrantes 1'].items():
+    texto = "*🍽️ Entrantes (1/2):*\n"
+    for nombre_receta, ingredientes in recetas['Entrantes1'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
-@bot.message_handler(commands=['entrantes2'])  
+@bot.message_handler(commands=['entrantes2'])
 def mostrar_entrantes2(message):
-    texto = "*🍽️ Entrantes 2:*\n"
-    for nombre_receta, ingredientes in recetas['Entrantes 2'].items():
+    texto = "*🍽️ Entrantes (2/2):*\n"
+    for nombre_receta, ingredientes in recetas['Entrantes2'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
 @bot.message_handler(commands=['postres1'])
 def mostrar_postres1(message):
-    texto = "*🍰 Postres 1:*\n"
-    for nombre_receta, ingredientes in recetas['Postres 1'].items():
+    texto = "*🍰 Postres (1/2):*\n"
+    for nombre_receta, ingredientes in recetas['Postres1'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
 
 @bot.message_handler(commands=['postres2'])
 def mostrar_postres2(message):
-    texto = "*🍰 Postres 2:*\n"
-    for nombre_receta, ingredientes in recetas['Postres 2'].items():
+    texto = "*🍰 Postres (2/2):*\n"
+    for nombre_receta, ingredientes in recetas['Postres2'].items():
         ingredientes_texto = "\n  - ".join(ingredientes)
         texto += f"\n  *{nombre_receta}*\n  - {ingredientes_texto}\n"
     bot.send_message(message.chat.id, texto, parse_mode="Markdown")
