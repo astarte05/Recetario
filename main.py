@@ -1,22 +1,14 @@
-import telebot
 import os
+import telebot
 
-# Obtenemos el token desde los Secrets de Replit
+# Obtener el token desde la variable de entorno
 TOKEN = os.getenv('TELEGRAM_TOKEN')
 
-if not TOKEN:
-    print("❌ ¡ERROR! El token no se cargó.")
-else:
-    print("✅ Token cargado correctamente.")
+if TOKEN is None:
+    raise ValueError("El token de Telegram no se ha configurado correctamente.")
 
+# Inicializar el bot de Telegram con el token
 bot = telebot.TeleBot(TOKEN)
-
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-    bot.reply_to(message, "¡Hola! Soy tu bot de prueba.")
-
-# Inicia el bot
-bot.polling(none_stop=True)
 
 # Diccionario de categorías de ingredientes
 ingredientes_categoria = {
